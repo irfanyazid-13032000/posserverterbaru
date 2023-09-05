@@ -369,9 +369,9 @@
                         <?php endif; ?>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Product category')): ?>
                             <li
-                                class="dash-item <?php echo e(Request::route()->getName() == 'product_categorie.index' ? ' active' : ''); ?>">
+                                class="dash-item <?php echo e(Request::route()->getName() == 'category.index' ? ' active' : ''); ?>">
                                 <a class="dash-link"
-                                    href="<?php echo e(route('product_categorie.index')); ?>"><?php echo e(__('Product Category')); ?></a>
+                                    href="<?php echo e(route('category.index')); ?>"><?php echo e(__('Product Category')); ?></a>
                             </li>
                         <?php endif; ?>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Product Tax')): ?>

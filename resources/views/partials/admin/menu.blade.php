@@ -368,9 +368,9 @@
                         @endcan
                         @can('Manage Product category')
                             <li
-                                class="dash-item {{ Request::route()->getName() == 'product_categorie.index' ? ' active' : '' }}">
+                                class="dash-item {{ Request::route()->getName() == 'category.index' ? ' active' : '' }}">
                                 <a class="dash-link"
-                                    href="{{ route('product_categorie.index') }}">{{ __('Product Category') }}</a>
+                                    href="{{ route('category.index') }}">{{ __('Product Category') }}</a>
                             </li>
                         @endcan
                         @can('Manage Product Tax')

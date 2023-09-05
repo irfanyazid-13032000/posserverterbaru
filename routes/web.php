@@ -29,6 +29,7 @@ use App\Http\Controllers\WebhookController;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Http\Controllers\AamarpayController;
 use App\Http\Controllers\CashfreeController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PurchaseController;
@@ -760,3 +761,14 @@ Route::post('/ingredient/{code}/store',[IngredientsController::class,'store'])->
 Route::get('/ingredient/{code}/edit/{id}',[IngredientsController::class,'edit'])->name('ingredient.edit');
 Route::post('/ingredient/{id}/update',[IngredientsController::class,'update'])->name('ingredient.update');
 Route::get('/ingredient/{code}/{id}/delete',[IngredientsController::class,'destroy'])->name('ingredient.delete');
+
+
+
+
+// category
+Route::get('/category',[CategoryController::class,'index'])->name('category.index');
+Route::get('/category/create',[CategoryController::class,'create'])->name('category.create');
+Route::post('/category/store',[CategoryController::class,'store'])->name('category.store');
+Route::get('/category/{id}/edit',[CategoryController::class,'edit'])->name('category.edit');
+Route::post('/category/{id}/update',[CategoryController::class,'update'])->name('category.update');
+Route::get('/category/{id}/delete',[CategoryController::class,'destroy'])->name('category.delete');

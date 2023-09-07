@@ -747,7 +747,7 @@ Route::get('/produk/{id}/edit',[ProductController::class,'edit'])->name('product
 Route::post('/produk/{id}/update',[ProductController::class,'update'])->name('product.update');
 Route::get('/produk/{id}/delete',[ProductController::class,'destroy'])->name('product.delete');
 Route::get('/produk/{id}/add-stock',[ProductController::class,'addStock'])->name('product.add.stock');
-Route::get('produk/bahan-penyusun/{i}',[ProductController::class,'bahanPenyusun'])->name('product.bahan.penyusun');
+Route::get('produk/bahan-penyusun/{i}/{warehouse_id}',[ProductController::class,'bahanPenyusun'])->name('product.bahan.penyusun');
 Route::get('produk/table-awal-bahan-penyusun/{i}/{warehouse_id}',[ProductController::class,'awalBahanPenyusun'])->name('product.awal.bahan.penyusun');
 Route::get('produk/price-bahan-penyusun/{bahan_dasar_id}/{warehouse_id}',[ProductController::class,'priceBahanPenyusun'])->name('product.price.bahan.penyusun');
 Route::post('/produk/add-stock-product-reducing-warehouse-stock',[ProductController::class,'addStockProduct'])->name('add.stock.product.reducing.warehouse.stock');

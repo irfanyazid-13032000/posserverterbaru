@@ -701,7 +701,6 @@ Route::post('/food-process/update/{id_food_process}',[FoodController::class,'foo
 Route::get('/food-process/delete/{id_food_process}',[FoodController::class,'foodProcessDelete'])->name('food.process.delete');
 
 
-
 // record bahan
 Route::get('/record_bahan',[RecordBahanController::class,'index'])->name('record.bahan.index');
 Route::get('/record_bahan/delete/{id}',[RecordBahanController::class,'destroy'])->name('record.bahan.delete');

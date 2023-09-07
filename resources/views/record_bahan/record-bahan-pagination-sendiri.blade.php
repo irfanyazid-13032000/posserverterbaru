@@ -78,7 +78,7 @@
               </tbody>
           </table>
 
-          {{ $record_bahans->appends(['cari' => $cari, 'startDate' => $date_from, 'endDate' => $date_to])->links() }}
+          {{ $record_bahans->appends(['cari' => $cari, 'startDate' => $date_from, 'endDate' => $date_to,'proses_produksi_id'=>$proses_produksi_id])->links() }}
 
 
         </div>

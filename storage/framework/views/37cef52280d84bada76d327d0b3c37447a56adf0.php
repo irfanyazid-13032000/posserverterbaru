@@ -78,7 +78,7 @@
               </tbody>
           </table>
 
-          <?php echo e($record_bahans->appends(['cari' => $cari, 'startDate' => $date_from, 'endDate' => $date_to])->links()); ?>
+          <?php echo e($record_bahans->appends(['cari' => $cari, 'startDate' => $date_from, 'endDate' => $date_to,'proses_produksi_id'=>$proses_produksi_id])->links()); ?>
 
 
 

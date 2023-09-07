@@ -10,6 +10,7 @@
                         <th>nama bahan</th>
                         <th>Satuan</th>
                         <th>kategori bahan</th>
+                        <th>harga acuan</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -20,6 +21,7 @@
                      <td><?php echo e($bahan->nama_bahan); ?></td>
                      <td><?php echo e($bahan->nama_satuan); ?></td>
                      <td><?php echo e($bahan->nama_kategori_bahan); ?></td>
+                     <td><?php echo e($bahan->harga_acuan); ?></td>
                      <td>
                       <a href="<?php echo e(route('bahan.dasar.edit',['id'=>$bahan->id])); ?>" class="btn btn-primary">edit</a>
                       <a href="<?php echo e(route('bahan.dasar.delete',['id'=>$bahan->id])); ?>" onclick="return confirm('apakah anda yakin menghapus data ini?')" class="btn btn-danger">delete</a>

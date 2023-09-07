@@ -40,9 +40,9 @@ class BahanDasarController extends Controller
 
         DB::table('bahan_dasars')->insert([
             'nama_bahan' => $request->nama_bahan,
-            'harga_satuan' => $request->harga_satuan,
             'satuan_id' => $request->satuan_id,
             'kategori_bahan_id' => $request->kategori_bahan_id,
+            'harga_acuan' => $request->harga_acuan,
         ]);
 
         return redirect()->route('bahan.dasar.index');
@@ -62,9 +62,9 @@ class BahanDasarController extends Controller
     public function edit(string $id)
     {
         $bahan_dasar = DB::table('bahan_dasars')->where('id',$id)->get()->first();
-        $kategori_bahans = DB::table('kategori_bahan')->get();
+        $kategori_bahan = DB::table('kategori_bahan')->where('id',$bahan_dasar->kategori_bahan_id)->first();
         $satuans = DB::table('satuan')->get();
-        return view('bahan_dasar.edit-bahan-dasar',compact('bahan_dasar','kategori_bahans','satuans'));
+        return view('bahan_dasar.edit-bahan-dasar',compact('bahan_dasar','kategori_bahan','satuans'));
     }
 
     /**
@@ -74,7 +74,8 @@ class BahanDasarController extends Controller
     {
         DB::table('bahan_dasars')->where('id',$id)->update([
             'nama_bahan' => $request->nama_bahan,
-            'harga_satuan' => $request->harga_satuan,
+            'harga_acuan' => $request->harga_acuan,
+            'satuan_id' => $request->satuan_id,
         ]);
 
         return redirect()->route('bahan.dasar.index');

@@ -2,7 +2,7 @@
 @section('content')
 <div class="col-md-12">
             <div class="card mb-4">
-                <h5 class="card-header">Tambah Data Bahan Dasar</h5>
+                <h5 class="card-header">Tambah Data Bahan Produksi</h5>
                 <div class="card-body">
                     <form action="{{route('bahan.dasar.store')}}" method="POST" >
                         @csrf
@@ -21,6 +21,12 @@
 
                         <div class="mb-3" id="bahan_dasar">
                             
+                        </div>
+
+
+                        <div class="mb-3" id="harga_acuan">
+                            <label for="harga_acuan" class="form-label">Harga Acuan</label>
+                            <input type="number" name="harga_acuan" class="form-control">
                         </div>
 
                       

@@ -6,26 +6,19 @@
                 <div class="card-body">
                     <form action="{{route('bahan.dasar.update',['id'=>$bahan_dasar->id])}}" method="POST" >
                         @csrf
-
-
-                        <div class="mb-3">
-                            <label for="kategori_bahan_id" class="form-label">kategori bahan</label>
-                            <select name="kategori_bahan_id" id="kategori_bahan_id" class="form-control">
-                                <option value="">pilih kategori bahan</option>
-                                @foreach ($kategori_bahans as $kategori_bahan)
-                                @if ($kategori_bahan->id == $bahan_dasar->kategori_bahan_id)
-                                <option value="{{$kategori_bahan->id}}"selected>{{$kategori_bahan->nama_kategori_bahan}}</option>
-                                @else
-                                <option value="{{$kategori_bahan->id}}">{{$kategori_bahan->nama_kategori_bahan}}</option>
-                                @endif
-                                @endforeach
-                            </select>
+                        
+                        <div class="mb-3" id="bahan_dasar">
+                            <label for="kategori_bahan_id" class="form-label">Nama kategori bahan</label>
+                            <input type="text" class="form-control" id="" name="kategori_bahan_id"
+                                value="{{ $kategori_bahan->nama_kategori_bahan }}" readonly>
                             @error('kategori_bahan_id')
                                 <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
                             @enderror
                         </div>
-                        
-                        
+
+                        <input type="hidden" value="{{$bahan_dasar->kategori_bahan_id}}" name="kategori_bahan_id">
+
+
                         <div class="mb-3" id="bahan_dasar">
                             <label for="nama_bahan" class="form-label">Nama Bahan</label>
                             <input type="text" class="form-control" id="nama_bahan" name="nama_bahan"
@@ -36,11 +29,9 @@
                         </div>
 
 
-                      
-
                         <div class="mb-3">
                             <label for="satuan_id" class="form-label">Satuan</label>
-                            <select name="satuan_id" id="satuan_id" class="form-control">
+                            <select name="satuan_id" id="satuan_id" class="form-control" readonly>
                                 <option value="">pilih satuan</option>
                                 @foreach ($satuans as $satuan)
                                 @if ($satuan->id == $bahan_dasar->satuan_id)
@@ -51,6 +42,15 @@
                                 @endforeach
                             </select>
                             @error('satuan_id')
+                                <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3" id="bahan_dasar">
+                            <label for="harga_acuan" class="form-label">Harga Acuan</label>
+                            <input type="text" class="form-control" id="harga_acuan" name="harga_acuan"
+                                value="{{ $bahan_dasar->harga_acuan }}" required>
+                            @error('harga_acuan')
                                 <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
                             @enderror
                         </div>

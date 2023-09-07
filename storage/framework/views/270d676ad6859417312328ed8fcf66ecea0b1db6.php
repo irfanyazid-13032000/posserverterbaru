@@ -30,7 +30,7 @@ unset($__errorArgs, $__bag); ?>
 
                         <div class="mb-3">
                             <label for="no_invoice" class="form-label">no invoice</label>
-                            <input type="text" class="form-control" id="no_invoice" name="no_invoice">
+                            <input type="text" class="form-control" id="no_invoice" name="no_invoice" value="<?php echo e($no_invoice); ?>" readonly>
                             <?php $__errorArgs = ['no_invoice'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -42,117 +42,12 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                         </div>
-
-
-
-                        <div class="mb-3">
-                            <label for="bahan_dasar_id" class="form-label">nama bahan</label>
-                            <select name="bahan_dasar_id" id="bahan_dasar_id" class="form-control">
-                              <option value="">pilih bahan</option>
-                              <?php $__currentLoopData = $bahans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $bahan): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                              <option value="<?php echo e($bahan->id); ?>"><?php echo e($bahan->nama_bahan); ?></option>
-                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </select>
-                            <?php $__errorArgs = ['bahan_dasar_id'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                <p style="color: rgb(253, 21, 21)"><?php echo e($message); ?></p>
-                            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                        </div>
-
-
+                    
 
                         <div class="mb-3">
-                            <label for="nama_kategori_bahan" class="form-label">kategori bahan</label>
-                            <input type="text" class="form-control" id="nama_kategori_bahan" readonly>
-                            <?php $__errorArgs = ['kategori_bahan'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                <p style="color: rgb(253, 21, 21)"><?php echo e($message); ?></p>
-                            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
+                          <div id="bahan_dasar_purchase"></div>
                         </div>
-
-                        <input type="hidden" name="kategori_bahan_id" id="kategori_bahan_id">
-
-
-                        <div class="mb-3">
-                            <label for="nama_satuan" class="form-label">nama satuan</label>
-                            <input type="text" class="form-control" id="nama_satuan" readonly>
-                            <?php $__errorArgs = ['nama_satuan'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                <p style="color: rgb(253, 21, 21)"><?php echo e($message); ?></p>
-                            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                        </div>
-
-                        <input type="hidden" name="satuan_id" id="satuan_id">
-
-
-
-                        <div class="mb-3">
-                            <label for="qty" class="form-label">Qty</label>
-                            <input type="number" class="form-control" id="qty" name="qty"
-                                value="<?php echo e(old('qty')); ?>" required>
-                            <?php $__errorArgs = ['qty'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                <p style="color: rgb(253, 21, 21)"><?php echo e($message); ?></p>
-                            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                        </div>
-
-
-                        <div class="mb-3">
-                            <label for="harga_satuan" class="form-label">harga_satuan</label>
-                            <input type="number" class="form-control" id="harga_satuan" name="harga_satuan"
-                                value="<?php echo e(old('harga_satuan')); ?>" required>
-                            <?php $__errorArgs = ['harga_satuan'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                <p style="color: rgb(253, 21, 21)"><?php echo e($message); ?></p>
-                            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                        </div>
-
-
-                        <div class="mb-3">
-                            <label for="jumlah_harga" class="form-label">jumlah_harga</label>
-                            <input type="number" class="form-control" id="jumlah_harga" name="jumlah_harga"
-                                value="<?php echo e(old('jumlah_harga')); ?>" readonly>
-                            <?php $__errorArgs = ['jumlah_harga'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                <p style="color: rgb(253, 21, 21)"><?php echo e($message); ?></p>
-                            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                        </div>
+                        
 
 
                         <div class="mb-3">
@@ -179,7 +74,7 @@ unset($__errorArgs, $__bag); ?>
                         
                         <div class="d-flex justify-content-end mt-2">
                             <button class="btn btn-primary" type="submit">Simpan</button>
-                            <a href="<?php echo e(route('outlet.index')); ?>" class="btn btn-danger ms-3">Kembali</a>
+                            <a href="<?php echo e(route('purchase.index')); ?>" class="btn btn-danger ms-3">Kembali</a>
                         </div>
                     </form>
                 </div>
@@ -193,39 +88,112 @@ unset($__errorArgs, $__bag); ?>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>  
 <script>
-  $('#bahan_dasar_id').select2({})
+  // $('#bahan_dasar_id').select2({})
   $('#warehouse_id').select2({})
-//   $('#kategori_bahan_id').select2({})
-//   $('#satuan_id').select2({})
   $('#vendor_id').select2({})
-  $('#bahan_dasar_id').on('change',function (params) {
-    var routeUrl = "<?php echo e(route('food.data', ':index')); ?>";
-            routeUrl = routeUrl.replace(':index', $('#bahan_dasar_id').val());
+
+  let i = 0
+  function loadTableAwalBahan() {
+    var routeUrl = "<?php echo e(route('purchase.table.awal.bahan',':i')); ?>";
+            routeUrl = routeUrl.replace(':i', i);
 
             $.ajax({
                 url: routeUrl,
                 method: 'GET',
                 success: function(res) {
-                    $('#nama_kategori_bahan').val(res.nama_kategori_bahan)
-                    $('#nama_satuan').val(res.nama_satuan)
-                    $('#kategori_bahan_id').val(res.kategori_bahan_id)
-                    $('#satuan_id').val(res.satuan_id)
-                    hitungJumlahHarga()
+                  $('#bahan_dasar_purchase').html(res)
+                  $('#bahan_dasar_id' + i).select2()
+                  addRowPurchase()
+                  getDataWhenSelectedBahanDasar(i)
+
                 }
             });
-  })
-
-  $('#qty').on('keyup',function (params) {
-    hitungJumlahHarga()
-  })
-
-  $('#harga_satuan').on('keyup',function (params) {
-    hitungJumlahHarga()
-  })
-
-  function hitungJumlahHarga(){
-    $('#jumlah_harga').val($('#qty').val() * $('#harga_satuan').val())
   }
+
+  loadTableAwalBahan()
+
+  function addRowPurchase(params) {
+    $('#add-row').on('click',function (params) {
+      ++i
+
+      var routeUrl = "<?php echo e(route('purchase.table.tambahan.bahan',':i')); ?>";
+            routeUrl = routeUrl.replace(':i', i);
+
+            $.ajax({
+                url: routeUrl,
+                method: 'GET',
+                success: function(res) {
+                  $('#table-bahan-purchase').append(res)
+                  $('#bahan_dasar_id' + i).select2()
+                  getDataWhenSelectedBahanDasar(i)
+                  deleteRow(i)
+                }
+            });
+      
+      
+      
+    })
+  }
+
+
+  function getDataWhenSelectedBahanDasar(i) {
+    $('#bahan_dasar_id' + i).on('change',function (params) {
+      var routeUrl = "<?php echo e(route('purchase.data.bahan.dasar',':bahan_dasar_id')); ?>";
+            routeUrl = routeUrl.replace(':bahan_dasar_id', $('#bahan_dasar_id' + i).val());
+
+            $.ajax({
+                url: routeUrl,
+                method: 'GET',
+                success: function(res) {
+                  console.log(res);
+                  $('#harga_acuan' + i).val(res.harga_acuan)
+                  $('#satuan' + i).val(res.nama_satuan)
+                  $('#nama_kategori_bahan' + i).val(res.nama_kategori_bahan)
+                  $('#kategori_bahan_id' + i).val(res.kategori_bahan_id)
+                  cariSelisihHarga(i)
+                  cariJumlahHarga(i)
+
+                }
+            });
+    })
+  }
+
+
+
+  function deleteRow(i) {
+    $(".delete-row").click(function() {
+        var row = $(this).closest("tr");
+        row.remove();
+      });
+  }
+
+  function cariSelisihHarga(i) {
+    $('#harga_satuan' + i).on('keyup',function (params) {
+      let harga_acuan = $('#harga_acuan' + i).val()
+      let harga_satuan = $('#harga_satuan' + i).val()
+      $('#selisih_harga' + i).val(harga_acuan - harga_satuan)
+    })
+  }
+
+  function cariJumlahHarga(i) {
+    $('#qty' + i).on('keyup',function (params) {
+      let qty = $('#qty' + i).val()
+      let harga_satuan = $('#harga_satuan' + i).val()
+      $('#jumlah_harga' + i).val(qty * harga_satuan)
+    })
+
+    $('#harga_satuan' + i).on('keyup',function (params) {
+      let qty = $('#qty' + i).val()
+      let harga_satuan = $('#harga_satuan' + i).val()
+      $('#jumlah_harga' + i).val(qty * harga_satuan)
+    })
+  }
+
+
+
+  
+
+
 
 </script>
 <?php $__env->stopPush(); ?>

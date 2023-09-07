@@ -668,7 +668,6 @@ Route::get('/bahan_tambahan_data_by_warehouse/{id_warehouse}',[BahanDasarControl
 Route::get('/harga_bahan_tambahan_data_by_warehouse/{id_warehouse}/{id_bahan_dasar}',[BahanDasarController::class,'hargaBahanTambahan'])->name('harga.bahan.tambahan');
 
 
-
 // purchase
 Route::get('/vurchase',[PurchaseController::class,'index'])->name('purchase.index');
 Route::get('/vurchase/create',[PurchaseController::class,'create'])->name('purchase.create');
@@ -676,6 +675,9 @@ Route::post('/vurchase/store',[PurchaseController::class,'store'])->name('purcha
 Route::get('/vurchase/edit/{id}',[PurchaseController::class,'edit'])->name('purchase.edit');
 Route::post('/vurchase/update/{id}',[PurchaseController::class,'update'])->name('purchase.update');
 Route::get('/vurchase/delete/{id}',[PurchaseController::class,'destroy'])->name('purchase.delete');
+Route::get('/vurchase/table_awal_bahan/{i}',[PurchaseController::class,'tableAwal'])->name('purchase.table.awal.bahan');
+Route::get('/vurchase/table_tambahan_bahan/{i}',[PurchaseController::class,'tableTambahan'])->name('purchase.table.tambahan.bahan');
+Route::get('/vurchase/data_bahan_dasar/{bahan_dasar_id}',[PurchaseController::class,'dataBahanDasar'])->name('purchase.data.bahan.dasar');
 
 
 // food

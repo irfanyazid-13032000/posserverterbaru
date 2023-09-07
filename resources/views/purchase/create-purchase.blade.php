@@ -23,80 +23,17 @@
 
                         <div class="mb-3">
                             <label for="no_invoice" class="form-label">no invoice</label>
-                            <input type="text" class="form-control" id="no_invoice" name="no_invoice">
+                            <input type="text" class="form-control" id="no_invoice" name="no_invoice" value="{{$no_invoice}}" readonly>
                             @error('no_invoice')
                                 <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
                             @enderror
                         </div>
-
-
-
-                        <div class="mb-3">
-                            <label for="bahan_dasar_id" class="form-label">nama bahan</label>
-                            <select name="bahan_dasar_id" id="bahan_dasar_id" class="form-control">
-                              <option value="">pilih bahan</option>
-                              @foreach ($bahans as $bahan)
-                              <option value="{{ $bahan->id }}">{{ $bahan->nama_bahan }}</option>
-                              @endforeach
-                            </select>
-                            @error('bahan_dasar_id')
-                                <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-
+                    
 
                         <div class="mb-3">
-                            <label for="nama_kategori_bahan" class="form-label">kategori bahan</label>
-                            <input type="text" class="form-control" id="nama_kategori_bahan" readonly>
-                            @error('kategori_bahan')
-                                <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
-                            @enderror
+                          <div id="bahan_dasar_purchase"></div>
                         </div>
-
-                        <input type="hidden" name="kategori_bahan_id" id="kategori_bahan_id">
-
-
-                        <div class="mb-3">
-                            <label for="nama_satuan" class="form-label">nama satuan</label>
-                            <input type="text" class="form-control" id="nama_satuan" readonly>
-                            @error('nama_satuan')
-                                <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <input type="hidden" name="satuan_id" id="satuan_id">
-
-
-
-                        <div class="mb-3">
-                            <label for="qty" class="form-label">Qty</label>
-                            <input type="number" class="form-control" id="qty" name="qty"
-                                value="{{ old('qty') }}" required>
-                            @error('qty')
-                                <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-
-                        <div class="mb-3">
-                            <label for="harga_satuan" class="form-label">harga_satuan</label>
-                            <input type="number" class="form-control" id="harga_satuan" name="harga_satuan"
-                                value="{{ old('harga_satuan') }}" required>
-                            @error('harga_satuan')
-                                <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-
-                        <div class="mb-3">
-                            <label for="jumlah_harga" class="form-label">jumlah_harga</label>
-                            <input type="number" class="form-control" id="jumlah_harga" name="jumlah_harga"
-                                value="{{ old('jumlah_harga') }}" readonly>
-                            @error('jumlah_harga')
-                                <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
-                            @enderror
-                        </div>
+                        
 
 
                         <div class="mb-3">
@@ -116,7 +53,7 @@
                         
                         <div class="d-flex justify-content-end mt-2">
                             <button class="btn btn-primary" type="submit">Simpan</button>
-                            <a href="{{route('outlet.index')}}" class="btn btn-danger ms-3">Kembali</a>
+                            <a href="{{route('purchase.index')}}" class="btn btn-danger ms-3">Kembali</a>
                         </div>
                     </form>
                 </div>
@@ -130,39 +67,112 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>  
 <script>
-  $('#bahan_dasar_id').select2({})
+  // $('#bahan_dasar_id').select2({})
   $('#warehouse_id').select2({})
-//   $('#kategori_bahan_id').select2({})
-//   $('#satuan_id').select2({})
   $('#vendor_id').select2({})
-  $('#bahan_dasar_id').on('change',function (params) {
-    var routeUrl = "{{ route('food.data', ':index') }}";
-            routeUrl = routeUrl.replace(':index', $('#bahan_dasar_id').val());
+
+  let i = 0
+  function loadTableAwalBahan() {
+    var routeUrl = "{{ route('purchase.table.awal.bahan',':i') }}";
+            routeUrl = routeUrl.replace(':i', i);
 
             $.ajax({
                 url: routeUrl,
                 method: 'GET',
                 success: function(res) {
-                    $('#nama_kategori_bahan').val(res.nama_kategori_bahan)
-                    $('#nama_satuan').val(res.nama_satuan)
-                    $('#kategori_bahan_id').val(res.kategori_bahan_id)
-                    $('#satuan_id').val(res.satuan_id)
-                    hitungJumlahHarga()
+                  $('#bahan_dasar_purchase').html(res)
+                  $('#bahan_dasar_id' + i).select2()
+                  addRowPurchase()
+                  getDataWhenSelectedBahanDasar(i)
+
                 }
             });
-  })
-
-  $('#qty').on('keyup',function (params) {
-    hitungJumlahHarga()
-  })
-
-  $('#harga_satuan').on('keyup',function (params) {
-    hitungJumlahHarga()
-  })
-
-  function hitungJumlahHarga(){
-    $('#jumlah_harga').val($('#qty').val() * $('#harga_satuan').val())
   }
+
+  loadTableAwalBahan()
+
+  function addRowPurchase(params) {
+    $('#add-row').on('click',function (params) {
+      ++i
+
+      var routeUrl = "{{ route('purchase.table.tambahan.bahan',':i') }}";
+            routeUrl = routeUrl.replace(':i', i);
+
+            $.ajax({
+                url: routeUrl,
+                method: 'GET',
+                success: function(res) {
+                  $('#table-bahan-purchase').append(res)
+                  $('#bahan_dasar_id' + i).select2()
+                  getDataWhenSelectedBahanDasar(i)
+                  deleteRow(i)
+                }
+            });
+      
+      
+      
+    })
+  }
+
+
+  function getDataWhenSelectedBahanDasar(i) {
+    $('#bahan_dasar_id' + i).on('change',function (params) {
+      var routeUrl = "{{ route('purchase.data.bahan.dasar',':bahan_dasar_id') }}";
+            routeUrl = routeUrl.replace(':bahan_dasar_id', $('#bahan_dasar_id' + i).val());
+
+            $.ajax({
+                url: routeUrl,
+                method: 'GET',
+                success: function(res) {
+                  console.log(res);
+                  $('#harga_acuan' + i).val(res.harga_acuan)
+                  $('#satuan' + i).val(res.nama_satuan)
+                  $('#nama_kategori_bahan' + i).val(res.nama_kategori_bahan)
+                  $('#kategori_bahan_id' + i).val(res.kategori_bahan_id)
+                  cariSelisihHarga(i)
+                  cariJumlahHarga(i)
+
+                }
+            });
+    })
+  }
+
+
+
+  function deleteRow(i) {
+    $(".delete-row").click(function() {
+        var row = $(this).closest("tr");
+        row.remove();
+      });
+  }
+
+  function cariSelisihHarga(i) {
+    $('#harga_satuan' + i).on('keyup',function (params) {
+      let harga_acuan = $('#harga_acuan' + i).val()
+      let harga_satuan = $('#harga_satuan' + i).val()
+      $('#selisih_harga' + i).val(harga_acuan - harga_satuan)
+    })
+  }
+
+  function cariJumlahHarga(i) {
+    $('#qty' + i).on('keyup',function (params) {
+      let qty = $('#qty' + i).val()
+      let harga_satuan = $('#harga_satuan' + i).val()
+      $('#jumlah_harga' + i).val(qty * harga_satuan)
+    })
+
+    $('#harga_satuan' + i).on('keyup',function (params) {
+      let qty = $('#qty' + i).val()
+      let harga_satuan = $('#harga_satuan' + i).val()
+      $('#jumlah_harga' + i).val(qty * harga_satuan)
+    })
+  }
+
+
+
+  
+
+
 
 </script>
 @endpush

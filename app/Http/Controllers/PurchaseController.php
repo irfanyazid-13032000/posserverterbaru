@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Purchase;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
+use App\Models\ProsesProduksi;
 use App\Models\WarehouseRecord;
 use Illuminate\Support\Facades\DB;
 
@@ -15,15 +16,13 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        $purchases = Purchase::join('warehouses','purchases.warehouse_id','=','warehouses.id')
-                                    ->join('kategori_bahan','purchases.kategori_bahan_id','=','kategori_bahan.id')
-                                    ->join('bahan_dasars','purchases.bahan_dasar_id','=','bahan_dasars.id')
-                                    ->join('satuan','purchases.satuan_id','=','satuan.id')
-                                    ->join('vendors','purchases.vendor_id','=','vendors.id')
-                                    ->select('purchases.*','warehouses.name_warehouse','kategori_bahan.nama_kategori_bahan','bahan_dasars.nama_bahan','satuan.nama_satuan','vendors.name_vendor')
-                                    ->get();
-        // return $purchases;
-        return view('purchase.index-purchase',compact('purchases'));
+        $proses_produksis = ProsesProduksi::join('kategori_proses_produksi','proses_produksi.kategori_produksi_id','=','kategori_proses_produksi.id')
+                                ->join('menu_masakan','proses_produksi.menu_masakan_id','=','menu_masakan.id')
+                                ->join('warehouses','proses_produksi.warehouse_id','=','warehouses.id')
+                                ->select('proses_produksi.*','kategori_proses_produksi.nama_kategori','menu_masakan.nama_menu','warehouses.name_warehouse')
+                                ->get();
+        // return $proses_produksis;
+        return view('proses_produksi.index-proses-produksi',compact('proses_produksis'));
     }
 
     /**
@@ -97,18 +96,12 @@ class PurchaseController extends Controller
      */
     public function edit(string $id)
     {
-        $warehouses = Warehouse::all();
-        $kategori_bahans = DB::table('kategori_bahan')->get();
-        $bahans = DB::table('bahan_dasars')->get();
-        $satuans = DB::table('satuan')->get();
-        $vendors = DB::table('vendors')->get();
-        $purchase = Purchase::join('kategori_bahan','purchases.kategori_bahan_id','=','kategori_bahan.id')
-                            ->join('satuan','purchases.satuan_id','=','satuan.id')
-                            ->select('purchases.*','kategori_bahan.nama_kategori_bahan','satuan.nama_satuan')
-                            ->where('purchases.id',$id)
-                            ->get()->first();
-        // return $purchase;
-        return view('purchase.edit-purchase',compact('warehouses','kategori_bahans','bahans','satuans','vendors','purchase'));
+        $kategori_proses_produksis = DB::table('kategori_proses_produksi')->get();
+        $menu_masakans = DB::table('menu_masakan')->get();
+        $warehouses = DB::table('warehouses')->get();
+        $proses_produksi = ProsesProduksi::find($id);
+        // return $proses_produksi;
+        return view('proses_produksi.edit-proses-produksi',compact('kategori_proses_produksis','menu_masakans','proses_produksi','warehouses','id'));
     }
 
     /**

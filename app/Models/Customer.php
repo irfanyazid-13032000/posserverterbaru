@@ -9,18 +9,16 @@ class Customer extends Authenticatable
 {
     use Notifiable;
 
-    protected $fillable = [
-        'name',
-        'email',
-        'phone_number',
-        'password',
-        'store_id',
+
+    protected $guarded = [
+        'id',
+        
     ];
 
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    // protected $hidden = [
+    //     'password',
+    //     'remember_token',
+    // ];
 
     /*public function course_wl()
     {
@@ -36,9 +34,9 @@ class Customer extends Authenticatable
         );
     }
 */
-    public function purchasedProducts()
-    {
-        return $this->hasMany('App\Models\PurchasedProducts', 'customer_id', 'id')->get()->pluck('product_id')->toArray();
-    }
+    // public function purchasedProducts()
+    // {
+    //     return $this->hasMany('App\Models\PurchasedProducts', 'customer_id', 'id')->get()->pluck('product_id')->toArray();
+    // }
 
 }

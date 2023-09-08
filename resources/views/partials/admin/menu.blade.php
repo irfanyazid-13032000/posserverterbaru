@@ -355,10 +355,6 @@
                         @can('Manage Products')
                             <li
                                 class="dash-item {{ Request::route()->getName() == 'product.index' || Request::route()->getName() == 'product.create' || Request::route()->getName() == 'product.edit' || Request::route()->getName() == 'product.show' || Request::route()->getName() == 'product.grid' ? ' active' : '' }}">
-                                <a class="dash-link" href="{{ route('product.index') }}">{{ __('Products') }}</a>
-                            </li>
-                            <li
-                                class="dash-item {{ Request::route()->getName() == 'product.index' || Request::route()->getName() == 'product.create' || Request::route()->getName() == 'product.edit' || Request::route()->getName() == 'product.show' || Request::route()->getName() == 'product.grid' ? ' active' : '' }}">
                                 <a class="dash-link" href="{{ route('product.index') }}">produk</a>
                             </li>
                             <li

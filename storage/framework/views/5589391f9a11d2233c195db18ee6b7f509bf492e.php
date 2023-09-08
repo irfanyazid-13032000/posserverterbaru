@@ -356,10 +356,6 @@
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Products')): ?>
                             <li
                                 class="dash-item <?php echo e(Request::route()->getName() == 'product.index' || Request::route()->getName() == 'product.create' || Request::route()->getName() == 'product.edit' || Request::route()->getName() == 'product.show' || Request::route()->getName() == 'product.grid' ? ' active' : ''); ?>">
-                                <a class="dash-link" href="<?php echo e(route('product.index')); ?>"><?php echo e(__('Products')); ?></a>
-                            </li>
-                            <li
-                                class="dash-item <?php echo e(Request::route()->getName() == 'product.index' || Request::route()->getName() == 'product.create' || Request::route()->getName() == 'product.edit' || Request::route()->getName() == 'product.show' || Request::route()->getName() == 'product.grid' ? ' active' : ''); ?>">
                                 <a class="dash-link" href="<?php echo e(route('product.index')); ?>">produk</a>
                             </li>
                             <li

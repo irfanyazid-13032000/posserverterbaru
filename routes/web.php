@@ -30,6 +30,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Http\Controllers\AamarpayController;
 use App\Http\Controllers\CashfreeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PurchaseController;
@@ -773,3 +774,11 @@ Route::post('/category/store',[CategoryController::class,'store'])->name('catego
 Route::get('/category/{id}/edit',[CategoryController::class,'edit'])->name('category.edit');
 Route::post('/category/{id}/update',[CategoryController::class,'update'])->name('category.update');
 Route::get('/category/{id}/delete',[CategoryController::class,'destroy'])->name('category.delete');
+
+
+Route::get('/customer',[CustomerController::class,'index'])->name('customer.index');
+Route::get('/customer/create',[CustomerController::class,'create'])->name('customer.create');
+Route::get('/customer/destroy/{id}',[CustomerController::class,'destroy'])->name('customer.destroy');
+Route::get('/customer/edit/{id}',[CustomerController::class,'edit'])->name('customer.edit');
+Route::post('/customer/update/{id}',[CustomerController::class,'update'])->name('customer.update');
+Route::post('/customer/store',[CustomerController::class,'store'])->name('customer.store');

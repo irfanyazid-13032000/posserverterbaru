@@ -1,4 +1,4 @@
-                        <script>
+<script>
                               let cukup = true; // Inisialisasi cukup dengan true
                         </script>
                         <table class="table table-bordered">
@@ -6,7 +6,7 @@
                                 <tr>
                                   <th>no</th>
                                   <th>nama bahan</th>
-                                  <th>stock</th>
+                                  <th>stock in warehouse</th>
                                   <th>digunakan</th>
                                   <th>sisa</th>
                                   <th>harga satuan</th>
@@ -46,10 +46,13 @@
                             </tbody>
                             </table>
 
-                            <input type="text" value="<?php echo e($lengkap); ?>" id="kelengkapanBahan">
-                            <input type="text" value="<?php echo e($cukup); ?>" id="kecukupanBahan">
+                            <p>kelengkapan bahan : <?php echo e($lengkap); ?></p>
+                            <p>kecukupan bahan : <?php echo e($cukup); ?></p>
 
-                            <input type="number" value="<?php echo e($total_harga_produksi); ?>" name="jumlah_cost">
+                            <input type="hidden" value="<?php echo e($lengkap); ?>" id="kelengkapanBahan">
+                            <input type="hidden" value="<?php echo e($cukup); ?>" id="kecukupanBahan">
+
+                            <input type="hidden" value="<?php echo e($total_harga_produksi); ?>" name="jumlah_cost">
 
                             <script>
                               let lengkap = `<?php echo e($lengkap); ?>`

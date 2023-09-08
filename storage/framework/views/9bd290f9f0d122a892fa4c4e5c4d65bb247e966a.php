@@ -34,6 +34,10 @@ endif;
 unset($__errorArgs, $__bag); ?>
                         </div>
 
+                        <div class="mb-3">
+                            <div id="deskripsi"></div>
+                        </div>
+
 
                         <div class="mb-3">
                             <label for="warehouse_id" class="form-label">warehouse</label>
@@ -82,7 +86,7 @@ unset($__errorArgs, $__bag); ?>
 
 
                         <div class="mb-3">
-                            <label for="qty" class="form-label">Qty</label>
+                            <label for="qty" class="form-label">Set Menu</label>
                             <input type="number" class="form-control" id="qty" name="qty"
                                 value="1" required>
                             <?php $__errorArgs = ['qty'];
@@ -148,6 +152,26 @@ unset($__errorArgs, $__bag); ?>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> 
 <script>
+
+
+
+    $('#kategori_produksi_id').on('change',function (params) {
+        
+
+        var routeUrl = `<?php echo e(route('deskripsi.kategori.proses.produksi',':id')); ?>`;
+            routeUrl = routeUrl.replace(':id', $('#kategori_produksi_id').val());
+
+            $.ajax({
+                url: routeUrl,
+                method: 'GET',
+                success: function(res) {
+                    $('#deskripsi').html(`<p>${res.deskripsi}</p>`)
+                }
+            });
+        
+    })
+    
+    
     var i = 0
     $('#add-more').on('click',function (params) {
         ++i

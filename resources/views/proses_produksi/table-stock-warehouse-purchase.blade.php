@@ -1,4 +1,4 @@
-                        <script>
+<script>
                               let cukup = true; // Inisialisasi cukup dengan true
                         </script>
                         <table class="table table-bordered">
@@ -6,7 +6,7 @@
                                 <tr>
                                   <th>no</th>
                                   <th>nama bahan</th>
-                                  <th>stock</th>
+                                  <th>stock in warehouse</th>
                                   <th>digunakan</th>
                                   <th>sisa</th>
                                   <th>harga satuan</th>
@@ -46,10 +46,13 @@
                             </tbody>
                             </table>
 
-                            <input type="text" value="{{$lengkap}}" id="kelengkapanBahan">
-                            <input type="text" value="{{$cukup}}" id="kecukupanBahan">
+                            <p>kelengkapan bahan : {{$lengkap}}</p>
+                            <p>kecukupan bahan : {{$cukup}}</p>
 
-                            <input type="number" value="{{$total_harga_produksi}}" name="jumlah_cost">
+                            <input type="hidden" value="{{$lengkap}}" id="kelengkapanBahan">
+                            <input type="hidden" value="{{$cukup}}" id="kecukupanBahan">
+
+                            <input type="hidden" value="{{$total_harga_produksi}}" name="jumlah_cost">
 
                             <script>
                               let lengkap = `{{ $lengkap }}`

@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\PosController;
 use App\Http\Controllers\StoreAnalytic;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\PlanController;
@@ -24,6 +26,7 @@ use App\Http\Controllers\IyziPayController;
 use App\Http\Controllers\PayfastController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\WebhookController;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -783,3 +786,27 @@ Route::get('/customer/destroy/{id}',[CustomerController::class,'destroy'])->name
 Route::get('/customer/edit/{id}',[CustomerController::class,'edit'])->name('customer.edit');
 Route::post('/customer/update/{id}',[CustomerController::class,'update'])->name('customer.update');
 Route::post('/customer/store',[CustomerController::class,'store'])->name('customer.store');
+
+
+Route::get('/pos',[PosController::class,'index'])->name('pos.index');
+Route::get('/pos/cart',[PosController::class,'cart'])->name('pos.cart');
+Route::get('/pos/total-amount',[PosController::class,'totalAmount'])->name('pos.total.amount');
+Route::get('/pos/items-count',[PosController::class,'itemsCount'])->name('pos.items.count');
+Route::get('/pos/products',[PosController::class,'products'])->name('pos.products');
+Route::get('/pos/products-by-category/{category_id}',[PosController::class,'productsByCategory'])->name('pos.products.by.category');
+Route::get('/pos/category',[PosController::class,'category'])->name('pos.category');
+Route::post('/pos/struk',[PosController::class,'struk'])->name('pos.struk');
+
+
+// cart
+Route::get('/insert-cart/{id}',[CartController::class,'insert'])->name('cart.insert');
+Route::get('/remove-cart/{id}',[CartController::class,'remove'])->name('cart.remove');
+Route::post('/checkout-cart',[CartController::class,'checkout'])->name('cart.checkout');
+Route::get('/increase-qty-cart/{id}',[CartController::class,'increase'])->name('increase.cart');
+Route::get('/decrease-qty-cart/{id}',[CartController::class,'decrease'])->name('decrease.cart');
+
+
+// receipt
+Route::get('/receipt-print/{receipt_no}',[ReceiptController::class,'print'])->name('receipt.print');
+Route::post('/receipt-create',[ReceiptController::class,'create'])->name('create.receipt');
+

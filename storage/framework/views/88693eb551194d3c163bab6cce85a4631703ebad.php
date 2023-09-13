@@ -9,7 +9,7 @@
 
 <div class="minicart__product--items d-flex">
                     <div class="minicart__thumb">
-                        <a href="product-details.html"><img src="<?php echo e(asset('storage/product_images')); ?>/<?php echo e($cart->image); ?>" alt="product-img"></a>
+                        <a href="product-details.html"><img src="<?php echo e(asset('public/product_images')); ?>/<?php echo e($cart->image); ?>" alt="product-img"></a>
                     </div>
                     <div class="minicart__text">
                         <h4 class="minicart__subtitle"><a href="product-details.html"><?php echo e($cart->name_product); ?></a></h4>

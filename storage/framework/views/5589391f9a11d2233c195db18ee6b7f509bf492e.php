@@ -362,6 +362,10 @@
                                 class="dash-item <?php echo e(Request::route()->getName() == 'item.index' || Request::route()->getName() == 'product.create' || Request::route()->getName() == 'product.edit' || Request::route()->getName() == 'product.show' || Request::route()->getName() == 'product.grid' ? ' active' : ''); ?>">
                                 <a class="dash-link" href="<?php echo e(route('item.index')); ?>">item</a>
                             </li>
+                            <li
+                                class="dash-item <?php echo e(Request::route()->getName() == 'pos.index' || Request::route()->getName() == 'product.create' || Request::route()->getName() == 'product.edit' || Request::route()->getName() == 'product.show' || Request::route()->getName() == 'product.grid' ? ' active' : ''); ?>">
+                                <a class="dash-link" href="<?php echo e(route('pos.index')); ?>">pos</a>
+                            </li>
                         <?php endif; ?>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Product category')): ?>
                             <li

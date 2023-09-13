@@ -9,7 +9,7 @@
 
 <div class="minicart__product--items d-flex">
                     <div class="minicart__thumb">
-                        <a href="product-details.html"><img src="{{asset('storage/product_images')}}/{{$cart->image}}" alt="product-img"></a>
+                        <a href="product-details.html"><img src="{{asset('public/product_images')}}/{{$cart->image}}" alt="product-img"></a>
                     </div>
                     <div class="minicart__text">
                         <h4 class="minicart__subtitle"><a href="product-details.html">{{$cart->name_product}}</a></h4>
